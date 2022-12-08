@@ -1,0 +1,152 @@
+<?xml version='1.0'?>
+<sdf version='1.7'>
+  <model name='cube'>
+    <link name='link1'>
+      <inertial>
+        <pose>0.03 0.03 0.03 0 -0 0</pose>
+        <!--NOTE: Uses Polyethylene density to calculate the mass
+        see https://en.wikipedia.org/wiki/Polyethylene
+        -->
+        <mass>0.0035999999999996</mass>
+        <inertia>
+          <ixx>0.00012442</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00012442</iyy>
+          <iyz>0</iyz>
+          <izz>0.00012442</izz>
+        </inertia>
+      </inertial>
+      <visual name='visual'>
+        <pose>0.03 0.03 0.03 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.06 0.06 0.06</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Blue</name>
+          </script>
+          <shader type='pixel'/>
+        </material>
+      </visual>
+      <collision name='collision'>
+        <max_contacts>10</max_contacts>
+        <pose>0.03 0.03 0.03 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.06 0.06 0.06</size>
+          </box>
+        </geometry>
+        <surface>
+          <!--NOTE: Used dynamic friction of clean dry plastic cube on a plastic surface
+          (i.e. Polyethylene) see https://www.engineeringtoolbox.com/friction-coefficients-d_778.html
+          -->
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+            </ode>
+          </friction>
+          <contact>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <kp>1e+06</kp>
+              <kd>1e+06</kd>
+              <max_vel>1</max_vel>
+              <min_depth>0.002</min_depth>
+            </ode>
+            <bullet>
+              <kp>1e+06</kp>
+              <kd>1e+06</kd>
+            </bullet>
+          </contact>
+        </surface>
+      </collision>
+    </link>
+    <link name='link2'>
+      <inertial>
+        <pose>0.03 0.03 0.06 0 -0 0</pose>
+        <!--NOTE: Uses Polyethylene density to calculate the mass
+        see https://en.wikipedia.org/wiki/Polyethylene
+        -->
+        <mass>0.735999999999996</mass>
+        <inertia>
+          <ixx>0.00012442</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00012442</iyy>
+          <iyz>0</iyz>
+          <izz>0.00012442</izz>
+        </inertia>
+      </inertial>
+      <visual name='visual'>
+        <pose>0.03 0.03 0.06 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.06 0.075 0.01</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Blue</name>
+          </script>
+          <shader type='pixel'/>
+        </material>
+      </visual>
+      <collision name='collision'>
+        <max_contacts>20</max_contacts>
+        <pose>0.03 0.03 0.06 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.06 0.075 0.01</size>
+          </box>
+        </geometry>
+        <surface>
+          <!--NOTE: Used dynamic friction of clean dry plastic cube on a plastic surface
+          (i.e. Polyethylene) see https://www.engineeringtoolbox.com/friction-coefficients-d_778.html
+          -->
+          <friction>
+            <ode>
+              <mu>1000</mu>
+              <mu2>1000</mu2>
+            </ode>
+          </friction>
+          <contact>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <kp>1e+06</kp>
+              <kd>1e+06</kd>
+              <max_vel>1</max_vel>
+              <min_depth>0.002</min_depth>
+            </ode>
+            <bullet>
+              <kp>1e+06</kp>
+              <kd>1e+06</kd>
+            </bullet>
+          </contact>
+        </surface>
+      </collision>
+    </link>
+    <joint name='link_0_JOINT_0' type='fixed'>
+      <parent>link1</parent>
+      <child>link2</child>
+      <pose>0 0 0 0 -0 0</pose>
+      <physics>
+        <ode>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.2</erp>
+          </limit>
+          <suspension>
+            <cfm>0</cfm>
+            <erp>0.2</erp>
+          </suspension>
+        </ode>
+      </physics>
+    </joint>
+  </model>
+</sdf>
