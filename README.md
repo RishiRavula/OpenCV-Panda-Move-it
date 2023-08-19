@@ -2,7 +2,7 @@
 Sorting cubes by color using Panda arm
 
 ## Members
-Kristie Chen, Rishi Ravula, Nolan Prince, Jessica Anz, Alejandro Alvarez
+Rishi Ravula, Kristie Chen,  Nolan Prince, Jessica Anz, Alejandro Alvarez
 
 ***
 
